@@ -23,8 +23,11 @@ FEATHER_AMOUNT = 45
 def load_models():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = models.resnet18(pretrained=True).to(device).eval()
-    mp_face_detection = mp.solutions.face_detection
+    
+    # NEW INITIALIZATION FOR RECENT MEDIAPIPE VERSIONS
+    from mediapipe.python.solutions import face_detection as mp_face_detection
     face_detector = mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5)
+    
     return device, model, face_detector
 
 device, model, face_detector = load_models()
