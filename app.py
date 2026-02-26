@@ -22,17 +22,15 @@ FEATHER_AMOUNT = 45
 
 @st.cache_resource
 def load_models():
-    # 1. Load the ResNet model for the attack math
+    # 1. Load Torch
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = models.resnet18(pretrained=True).to(device).eval()
     
-    # 2. FIX: Direct import to avoid the AttributeError
-    try:
-        import mediapipe.python.solutions.face_detection as mp_face_detection
-    except ImportError:
-        import mediapipe.solutions.face_detection as mp_face_detection
-        
-    # Initialize the detector using the direct module
+    # 2. THE ULTIMATE MEDIAPIPE FIX
+    # We import the specific sub-module directly to avoid AttributeError
+    import mediapipe.python.solutions.face_detection as mp_face_detection
+    
+    # Initialize the detector
     face_detector = mp_face_detection.FaceDetection(
         model_selection=1, 
         min_detection_confidence=0.5
