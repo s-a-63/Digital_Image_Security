@@ -19,20 +19,24 @@ MAX_ITERATIONS = 1000
 FEATHER_AMOUNT = 45
 
 # --- BACKEND INITIALIZATION ---
+
 @st.cache_resource
 def load_models():
+    # 1. Load Torch Model
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = models.resnet18(pretrained=True).to(device).eval()
     
-    # Updated import for newer MediaPipe versions
+    # 2. Load MediaPipe with Fallback for Python 3.13
     import mediapipe as mp
-    mp_face_detection = mp.solutions.face_detection
-    
-    face_detector = mp_face_detection.FaceDetection(
-        model_selection=1, 
-        min_detection_confidence=0.5
-    )
-    
+    try:
+        # Try the modern direct import first
+        from mediapipe.python.solutions import face_detection as mp_face_detection
+        face_detector = mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5)
+    except (ImportError, AttributeError):
+        # Fallback for older legacy paths if needed
+        mp_face_detection = mp.solutions.face_detection
+        face_detector = mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5)
+        
     return device, model, face_detector
 
 device, model, face_detector = load_models()
