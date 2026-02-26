@@ -13,8 +13,8 @@ st.title("🛡️ Instagram-Friendly AI Face Cloaker")
 st.write("Upload a high-res photo to make it undetectable to AI while keeping it post-ready.")
 
 # --- YOUR ORIGINAL PARAMETERS ---
-START_EPS = 0.10
-MAX_EPS = 0.25
+START_EPS = 0.05
+MAX_EPS = 0.20
 MAX_ITERATIONS = 1000
 FEATHER_AMOUNT = 45
 
@@ -54,7 +54,7 @@ def create_ultra_smooth_mask(image_pil):
             mask[max(0, y-20):min(h, y+mh+20), max(0, x-20):min(w, x+mw+20)] = 1.0
     
     mask_tensor = torch.from_numpy(mask).permute(2, 0, 1).unsqueeze(0).to(device)
-    return transforms.GaussianBlur(kernel_size=91, sigma=FEATHER_AMOUNT)(mask_tensor)
+    return transforms.GaussianBlur(kernel_size=41, sigma=10)(mask_tensor)
 
 def apply_high_res_cloak(model, images, mask, original_label, status_placeholder):
     images = images.clone().detach().to(device)
