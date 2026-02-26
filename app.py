@@ -9,10 +9,10 @@ import mediapipe as mp
 
 # --- STREAMLIT FRONTEND SETUP ---
 st.set_page_config(page_title="AI Face Cloaker", layout="wide")
-st.title("🛡️ Instagram-Friendly AI Face Cloaker")
-st.write("Upload a high-res photo to make it undetectable to AI while keeping it post-ready.")
+st.title("Digital Image Security")
+st.write("Upload a photo to make it undetectable to AI.")
 
-# --- YOUR ORIGINAL PARAMETERS ---
+
 START_EPS = 0.1
 MAX_EPS = 0.25
 MAX_ITERATIONS = 1000
@@ -26,8 +26,6 @@ def load_models():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = models.resnet18(pretrained=True).to(device).eval()
     
-    # 2. THE ULTIMATE MEDIAPIPE FIX
-    # We import the specific sub-module directly to avoid AttributeError
     import mediapipe.python.solutions.face_detection as mp_face_detection
     
     # Initialize the detector
@@ -40,7 +38,6 @@ def load_models():
 
 device, model, face_detector = load_models()
 
-# --- YOUR ORIGINAL LOGIC FUNCTIONS (Unchanged) ---
 def create_ultra_smooth_mask(image_pil):
     img_np = np.array(image_pil)
     h, w, _ = img_np.shape
@@ -84,7 +81,6 @@ def apply_high_res_cloak(model, images, mask, original_label, status_placeholder
 
     return adv_images
 
-# --- STREAMLIT INTERACTION LOGIC ---
 uploaded_file = st.sidebar.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
@@ -122,6 +118,6 @@ if uploaded_file is not None:
             st.metric("Final AI Confidence", f"{final_conf:.2%}")
             
             if final_conf < 0.50:
-                st.success("✅ SUCCESS: High-Res Face is now UNDETECTABLE!")
+                st.success("✅ SUCCESS: The face is UNDETECTABLE!")
             else:
-                st.error("❌ FAILURE: Image is too stubborn. Try resizing down.")
+                st.error("❌ FAILURE: Face may be DETECTED by AI.")
