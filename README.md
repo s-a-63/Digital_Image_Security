@@ -2,12 +2,12 @@
 
 A privacy-preserving image transformation tool designed to mitigate AI-based facial recognition and deepfake misuse by applying adversarial perturbations that reduce AI model detection accuracy while maintaining perceptual image quality.
 
-🔗 Live Demo (Streamlit): [(https://digitalimagesecurity-mbehygmmyuwgmqfklvbrr2.streamlit.app/)]  
+🔗 Live Demo (Streamlit): https://digitalimagesecurity-mbehygmmyuwgmqfklvbrr2.streamlit.app/
 🎥 Demo Video: https://youtu.be/QfHy34D6Ths  
 
 ---
 
-## 📌 Overview
+## Overview
 
 With the rise of AI-powered facial recognition and deepfake technologies, publicly shared images can be exploited without user consent. This project introduces an adversarial image transformation pipeline that modifies uploaded images to disrupt AI-based feature extraction while preserving human-visible content.
 
@@ -15,7 +15,7 @@ Developed during **HackSRM 7.0 – AI/ML Track (24-hour National Hackathon)**.
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 - Upload images through an interactive Streamlit web interface  
 - Apply controlled adversarial perturbations to reduce AI recognition confidence  
@@ -24,7 +24,7 @@ Developed during **HackSRM 7.0 – AI/ML Track (24-hour National Hackathon)**.
 
 ---
 
-## 🧠 Methodology
+## Methodology
 
 The system applies controlled pixel-level perturbations designed to interfere with feature embeddings used in pretrained computer vision models.  
 
@@ -41,7 +41,7 @@ We experimentally analyzed the trade-off between:
 
 ---
 
-## 📊 Results
+## Results
 
 - Successfully reduced AI recognition accuracy during evaluation  
 - Demonstrated model evasion capability under controlled settings  
@@ -49,10 +49,10 @@ We experimentally analyzed the trade-off between:
 
 ---
 
-## 🖥 Live Application
+## Live Application
 
-👉 **Access the live tool here:**  
-[https://Digital Image Security.streamlit.app]((https://youtu.be/QfHy34D6Ths))
+**Access the live tool here:**  
+https://digitalimagesecurity-mbehygmmyuwgmqfklvbrr2.streamlit.app/
 
 ---
 
@@ -75,6 +75,8 @@ Tested against pretrained computer vision models to measure:
 ---
 
 ## Team Members
+
+Team name: M.A.P.S
 
 - Danthuluri Kiranmai Meghana
 - Mojjada Sahiti
