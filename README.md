@@ -2,8 +2,8 @@
 
 A privacy-preserving image transformation tool designed to mitigate AI-based facial recognition and deepfake misuse by applying adversarial perturbations that reduce AI model detection accuracy while maintaining perceptual image quality.
 
-Live Demo (Streamlit): (https://digitalimagesecurity-mbehygmmyuwgmqfklvbrr2.streamlit.app/)
-Demo Video: https://youtu.be/QfHy34D6Ths  
+- Live Demo (Streamlit): https://digitalimagesecurity-mbehygmmyuwgmqfklvbrr2.streamlit.app/
+- Demo Video: https://youtu.be/QfHy34D6Ths  
 
 ---
 
