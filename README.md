@@ -29,7 +29,6 @@ This project demonstrates practical adversarial machine learning concepts throug
 ---
 
 ## Technical Architecture
-
 1. Face Localization
 - Uses MediaPipe Face Detection to identify face regions
 - Generates a smooth mask for localized perturbation
@@ -60,7 +59,6 @@ The pipeline:
 5. Iterative gradient-based updates modify pixels within mask
 6. Model confidence is re-evaluated
 7. Transformed image and final confidence are displayed
-
 The goal is to experimentally reduce model confidence while maintaining visual similarity.
 ---
 
