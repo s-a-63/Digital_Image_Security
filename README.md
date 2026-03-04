@@ -1,6 +1,6 @@
 # Digital Image Privacy Protection Tool
 
-A privacy-preserving image transformation tool designed to mitigate AI-based facial recognition and deepfake misuse by applying adversarial perturbations that reduce AI model detection accuracy while maintaining perceptual image quality.
+A Streamlit-based adversarial image transformation tool that reduces AI image classification confidence by applying localized, gradient-based pixel perturbations while maintaining perceptual image quality.
 
 - Live Demo (Streamlit): https://digitalimagesecurity-mbehygmmyuwgmqfklvbrr2.streamlit.app/
 - Demo Video: https://youtu.be/QfHy34D6Ths  
@@ -9,36 +9,59 @@ A privacy-preserving image transformation tool designed to mitigate AI-based fac
 
 ## Overview
 
-With the rise of AI-powered facial recognition and deepfake technologies, publicly shared images can be exploited without user consent. This project introduces an adversarial image transformation pipeline that modifies uploaded images to disrupt AI-based feature extraction while preserving human-visible content.
+As AI vision models become increasingly powerful, images shared online can be analyzed and classified automatically. This project explores how small, controlled pixel-level perturbations can reduce the confidence of pretrained image classification models without significantly altering how the image appears to humans.
 
 Developed during **HackSRM 7.0 – AI/ML Track (24-hour National Hackathon)**.
+
+This project demonstrates practical adversarial machine learning concepts through an interactive web application.
 
 ---
 
 ## Key Features
 
-- Upload images through an interactive Streamlit web interface  
-- Apply controlled adversarial perturbations to reduce AI recognition confidence  
-- Balance privacy protection with perceptual quality preservation  
-- Real-time image transformation and visualization  
+- Upload images through an interactive Streamlit interface
+- Detect face regions using MediaPipe for localized modification
+- Apply iterative gradient-based adversarial perturbations
+- Reduce prediction confidence of a pretrained ResNet18 model
+- Preserve perceptual similarity using Gaussian smoothing
+- Real-time transformation and confidence visualization
 
 ---
 
+## Technical Architecture
+
+1. Face Localization
+- Uses MediaPipe Face Detection to identify face regions
+- Generates a smooth mask for localized perturbation
+
+2️. Classification Model
+- Uses pretrained ResNet18 (PyTorch)
+- Computes original prediction label and confidence
+
+3️. Adversarial Optimization
+- Applies iterative gradient-based perturbations
+- Constrains perturbation magnitude using epsilon bounds
+- Monitors softmax confidence reduction during iterations
+- Stops early when confidence drops below threshold
+
+4️. Output
+- Displays transformed image
+- Shows final AI confidence score
+- Reports success based on confidence reduction threshold
+
 ## Methodology
 
-The system applies controlled pixel-level perturbations designed to interfere with feature embeddings used in pretrained computer vision models.  
-
 The pipeline:
-1. Accepts user-uploaded image
-2. Applies adversarial noise / parameter modifications
-3. Evaluates impact on model inference confidence
-4. Outputs privacy-enhanced image
 
-We experimentally analyzed the trade-off between:
-- Perturbation strength
-- Recognition accuracy reduction
-- Visual distortion
+1. User uploads an image
+2. Image is resized and passed to ResNet18
+3. Original prediction label is computed
+4. Face region is detected and masked
+5. Iterative gradient-based updates modify pixels within mask
+6. Model confidence is re-evaluated
+7. Transformed image and final confidence are displayed
 
+The goal is to experimentally reduce model confidence while maintaining visual similarity.
 ---
 
 ## Results
@@ -58,19 +81,22 @@ https://digitalimagesecurity-mbehygmmyuwgmqfklvbrr2.streamlit.app/
 
 ## Evaluation
 
-Tested against pretrained computer vision models to measure:
-- Recognition confidence reduction
-- Structural similarity preservation
-- Visual distortion levels
+Tested against a pretrained ResNet18 classification model to measure:
+
+- Reduction in softmax prediction confidence
+- Iterative confidence tracking
+- Visual distortion trade-offs at varying perturbation strengths
+
+Note: The system reduces classification confidence under controlled conditions and does not claim universal evasion of production-grade facial recognition systems.
 
 ---
 
 ## Use Cases
 
-- Social media privacy enhancement
-- Adversarial machine learning research
-- AI security experimentation
-- Deepfake risk mitigation studies
+- Adversarial machine learning demonstrations
+- AI robustness experimentation
+- Educational projects on model vulnerability
+- Privacy-focused AI research prototypes
 
 ---
 
@@ -87,6 +113,6 @@ Team name: M.A.P.S
 
 ## Disclaimer
 
-This project is intended for educational and research purposes in AI privacy and adversarial robustness. It should not be used for malicious or deceptive activities.
+This project is developed strictly for educational and research purposes in adversarial machine learning and AI robustness. It is not intended for misuse, malicious evasion, or deceptive applications.
 
 ---
